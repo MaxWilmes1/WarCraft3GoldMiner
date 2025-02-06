@@ -6,11 +6,12 @@ import java.util.List;
 
 public final class Map {
 
-    public static String calculateMap (String currentPath, Worker w1){
+    public static String calculateNextPath (String currentPath, Worker w1){
         String nextPath;
         System.out.println(currentPath);
         System.out.println("w1 position: " + w1.getPosition());
         System.out.println("w1 direction: " + w1.getDirection());
+
         char[] pathArray = currentPath.toCharArray();
         for (int i = 1; i < pathArray.length - 1; i++) {
             pathArray[i] = '.';
@@ -30,4 +31,6 @@ public final class Map {
         return nextPath;
     }
 
+    public static void initializeGame(String initalPath) {
+    }
 }

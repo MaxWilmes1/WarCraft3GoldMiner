@@ -8,10 +8,13 @@ public class Worker {
     private String direction;
 
     public Worker() {
-        this.direction = "left";
-        this.isBase = false;
-        this.isMine = false;
-        this.position = 2;
+    }
+
+    public Worker(boolean isBase, boolean isMine, int position, String direction) {
+        this.direction = direction;
+        this.isBase = isBase;
+        this.isMine = isMine;
+        this.position = position;
     }
 
     public String getDirection() {
