@@ -50,7 +50,7 @@ public class Worker {
     }
 
     public void move(String currentPath){
-        char[] pathArray = currentPath.toCharArray();
+        currentPath.toCharArray();
         if (this.position == 0 || this.position == currentPath.length() - 1){
             changeDirection();
         }
