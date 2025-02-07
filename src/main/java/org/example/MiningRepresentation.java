@@ -7,48 +7,44 @@ public class MiningRepresentation {
 
     public static List<String> generate(String path, int time) {
         List<String> simulationResult = new ArrayList<>();
-        Worker w = initializeGame(path);
-        String currentPath = path;
+        Worker w = initializeWorker(path);
         boolean initialPathContainsWorker;
+        simulationResult.add(path);
 
-        if ( currentPath.contains("<") || currentPath.contains(">") ){
+        if ( path.contains("<") || path.contains(">") ){
             initialPathContainsWorker = true;
         } else {
             initialPathContainsWorker = false;
         }
 
-        for (int t = 0; t < time; t++) {
+        for (int t = 1; t < time; t++) {
             if (initialPathContainsWorker){
-                currentPath = generateNextSimulatedPath(currentPath, w);
-                w.move(currentPath);
+                w.move(path);
+                path = generateNextSimulatedPath(path, w);
             }
-            simulationResult.add(currentPath);
+            simulationResult.add(path);
         }
         return simulationResult;
     }
 
-    public static Worker initializeGame(String initalPath){
+    public static Worker initializeWorker(String path){
         Worker w = new Worker();
-        if (initalPath.contains("<") ) {
-            int position1 = initalPath.indexOf('<');
-            w.setMine(false);
-            w.setBase(false);
+        if (path.contains("<") ) {
+            int position1 = path.indexOf('<');
             w.setDirection("left");
             w.setPosition(position1);
 
-        } else if ( initalPath.contains(">")) {
-            int position1 = initalPath.indexOf('>');
-            w.setMine(false);
-            w.setBase(false);
+        } else if ( path.contains(">")) {
+            int position1 = path.indexOf('>');
             w.setDirection("right");
             w.setPosition(position1);
         }
         return w;
     }
 
-    public static String generateNextSimulatedPath(String currentPath, Worker w){
+    public static String generateNextSimulatedPath(String path, Worker w){
         String nextPath;
-        char[] pathArray = currentPath.toCharArray();
+        char[] pathArray = path.toCharArray();
         for (int i = 1; i < pathArray.length - 1; i++) {
             pathArray[i] = '.';
         }

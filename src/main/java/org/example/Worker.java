@@ -12,11 +12,30 @@ public class Worker {
 
     public Worker(boolean isBase, boolean isMine, int position, String direction) {
         this.direction = direction;
-        this.isBase = isBase;
-        this.isMine = isMine;
+        this.isBase = false;
+        this.isMine = false;
         this.position = position;
     }
 
+    public void move(String path){
+        path.toCharArray();
+        if (this.position == 0 || this.position == path.length() - 1){
+            changeDirection();
+        }
+        if (this.direction.equals("left")){
+            this.position --;
+        } else {
+            this.position ++;
+        }
+    }
+
+    public void changeDirection(){
+        if (this.direction.equals("left")){
+            this.direction = "right";
+        } else {
+            this.direction = "left";
+        }
+    }
     public String getDirection() {
         return direction;
     }
@@ -49,24 +68,5 @@ public class Worker {
         this.position = position;
     }
 
-    public void move(String currentPath){
-        currentPath.toCharArray();
-        if (this.position == 0 || this.position == currentPath.length() - 1){
-            changeDirection();
-        }
-        if (this.direction.equals("left")){
-                this.position --;
-            } else {
-                this.position ++;
-            }
-    }
-
-    public void changeDirection(){
-        if (this.direction.equals("left")){
-            this.direction = "right";
-        } else {
-            this.direction = "left";
-        }
-    }
 
 }
