@@ -49,8 +49,9 @@ public class Worker {
         this.position = position;
     }
 
-    public void move(){
-        if (this.position == 0 || this.position == 4){
+    public void move(String currentPath){
+        char[] pathArray = currentPath.toCharArray();
+        if (this.position == 0 || this.position == currentPath.length() - 1){
             changeDirection();
         }
         if (this.direction.equals("left")){

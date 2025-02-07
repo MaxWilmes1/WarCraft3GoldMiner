@@ -8,20 +8,15 @@ public class MiningRepresentation {
     public static List<String> generate(String path, int time) {
         String currentPath = path;
         List<String> simulation = new ArrayList<>();
-        Worker w = initializeGame(path); //initializiere Game, erstelle Worker mit passenden Parametern
+        Worker w = initializeGame(path);
 
         for (int t = 0; t < time; t++) {
-            System.out.println("t is currently: "+ t);
             if (w != null){
-                System.out.println("W1 Position: " + w.getPosition());
-                System.out.println("W1 direction: " + w.getDirection());
-                w.move();
                 currentPath = Map.calculateNextPath(currentPath, w);
+                w.move(currentPath);
             }
             simulation.add(currentPath);
-            System.out.println("---------------");
         }
-
         return simulation;
     }
 
