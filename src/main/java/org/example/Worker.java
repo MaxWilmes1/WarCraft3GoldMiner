@@ -7,25 +7,21 @@ public class Worker {
     private int position;
     private String direction;
 
-    public Worker() {
-    }
-
-    public Worker(boolean isBase, boolean isMine, int position, String direction) {
-        this.direction = direction;
+    public Worker(int position) {
         this.isBase = false;
         this.isMine = false;
         this.position = position;
     }
 
-    public void move(String path){
-        path.toCharArray();
-        if (this.position == 0 || this.position == path.length() - 1){
-            changeDirection();
+    public void move(String path) {
+        if (this.direction.equals("left") && this.position > 0) {
+            this.position--;
+        } else if (this.direction.equals("right") && this.position < path.length() - 1) {
+            this.position++;
         }
-        if (this.direction.equals("left")){
-            this.position --;
-        } else {
-            this.position ++;
+
+        if (this.position == 0 || this.position == path.length() - 1) {
+            changeDirection();
         }
     }
 
@@ -68,5 +64,13 @@ public class Worker {
         this.position = position;
     }
 
-
+    @Override
+    public String toString() {
+        return "Worker{" +
+                "direction='" + direction + '\'' +
+                ", isMine=" + isMine +
+                ", isBase=" + isBase +
+                ", position=" + position +
+                '}';
+    }
 }
