@@ -22,7 +22,6 @@ public class MiningRepresentation {
         }
 
         for (int t = 1; t < time; t++) {
-            System.out.println("time: "+t);
             if (initialPathContainsWorker){
                 for (Worker w : workers) {
                     w.move(path);
@@ -30,7 +29,6 @@ public class MiningRepresentation {
                 path = generateNextSimulatedPath(path, workers);
             }
             simulationResult.add(path);
-            System.out.println("--------");
         }
         return simulationResult;
     }
@@ -100,6 +98,5 @@ public class MiningRepresentation {
 
         return new String(pathArray);
     }
-
 
 }
